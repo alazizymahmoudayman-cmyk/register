@@ -111,8 +111,9 @@ const refresh = (req, res) => {
         refreshToken,
         process.env.REFRESH_TOKEN_SECRET,
         (err, decoded) => {
-            if (err) {
+            if (err) 
                 return res.status(403).json({ message: 'invalid refresh token' });
+            
                 const foundUser = User.findById({ _id: decoded.userInfo.id }).exec();
                 if (!foundUser) {
                     return res.status(401).json({ message: 'user not found' });
@@ -128,7 +129,7 @@ const refresh = (req, res) => {
                 );
                 res.json({ accessToken });
 
-            }
+            
         }
     );
 }
