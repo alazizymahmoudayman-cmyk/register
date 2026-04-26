@@ -14,15 +14,10 @@ const userSchema = new mongoose.Schema(
         type: String,
         required: true, 
     },
-    role:
-    {
-        type: String,
-        default: 'User', 
-    },
    
 },
  { timestamps: true, });
 
 
- 
+
 module.exports = mongoose.model('User', userSchema);

@@ -69,12 +69,10 @@ const login = async (req, res) => {
     if (!match) {
         return res.status(401).json({ message: 'incorrect password' });   
     }
-    const roles = foundUser.role;
     const accessToken = jwt.sign(
         {
             userInfo: {
                 id:foundUser._id,
-                role:roles,
             },
         },
         process.env.ACCESS_TOKEN_SECRET,
@@ -98,7 +96,6 @@ const login = async (req, res) => {
     res.json({ accessToken ,
         email:foundUser.email,
         name:foundUser.name,
-        role:roles,
     });
 }
 const refresh = (req, res) => {
@@ -123,7 +120,6 @@ const refresh = (req, res) => {
                     {
                         userInfo: {
                             id:foundUser._id,
-                            role:foundUser.role,
                         },
                     },
                     process.env.ACCESS_TOKEN_SECRET,
