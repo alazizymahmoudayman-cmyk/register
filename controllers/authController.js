@@ -20,6 +20,7 @@ const user = await User.create({
     name,
     email,
     password: hashedPassword,
+    role: 'User',
 });
 const accessToken = jwt.sign(
     {
@@ -50,6 +51,7 @@ res.cookie('jwt', refreshToken, {
 res.json({ accessToken ,
     email:user.email,
     name:user.name,
+    role:user.role,
 });
 
 };
