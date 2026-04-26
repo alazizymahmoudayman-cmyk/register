@@ -26,7 +26,7 @@ const accessToken = jwt.sign(
     {
         userInfo: {
             id:user._id,
-          
+          role:user.role,
         },
     },
     process.env.ACCESS_TOKEN_SECRET,
@@ -69,11 +69,12 @@ const login = async (req, res) => {
     if (!match) {
         return res.status(401).json({ message: 'incorrect password' });   
     }
+    const roles = foundUser.role;
     const accessToken = jwt.sign(
         {
             userInfo: {
                 id:foundUser._id,
-                role:foundUser.role,
+                role:roles,
             },
         },
         process.env.ACCESS_TOKEN_SECRET,
@@ -83,7 +84,6 @@ const login = async (req, res) => {
         {
             userInfo: { 
                 id:foundUser._id,
-                role:foundUser.role,
             },
         },
         process.env.REFRESH_TOKEN_SECRET,
@@ -98,11 +98,8 @@ const login = async (req, res) => {
     res.json({ accessToken ,
         email:foundUser.email,
         name:foundUser.name,
+        role:roles,
     });
-
-
-
-
 }
 const refresh = (req, res) => {
     const cookies = req.cookies;
@@ -126,6 +123,7 @@ const refresh = (req, res) => {
                     {
                         userInfo: {
                             id:foundUser._id,
+                            role:foundUser.role,
                         },
                     },
                     process.env.ACCESS_TOKEN_SECRET,
