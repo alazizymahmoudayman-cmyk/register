@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { route } = require('../routes/usersRoutes');
 const userSchema = new mongoose.Schema(
     {
         name: {
@@ -12,6 +13,11 @@ const userSchema = new mongoose.Schema(
     password: {
         type: String,
         required: true, 
+    },
+    role:
+    {
+        type: String,
+        default: 'user', 
     },
    
 },

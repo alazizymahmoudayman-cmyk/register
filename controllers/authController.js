@@ -71,6 +71,7 @@ const login = async (req, res) => {
         {
             userInfo: {
                 id:foundUser._id,
+                role:foundUser.role,
             },
         },
         process.env.ACCESS_TOKEN_SECRET,
@@ -80,6 +81,7 @@ const login = async (req, res) => {
         {
             userInfo: { 
                 id:foundUser._id,
+                role:foundUser.role,
             },
         },
         process.env.REFRESH_TOKEN_SECRET,
