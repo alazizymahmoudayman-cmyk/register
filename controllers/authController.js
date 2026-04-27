@@ -97,6 +97,7 @@ const login = async (req, res) => {
     res.json({ accessToken ,
         email:foundUser.email,
         name:foundUser.name,
+        role:foundUser.role,
     });
 }
 const refresh = (req, res) => {
